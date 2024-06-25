@@ -1,7 +1,7 @@
 const typingText = document.querySelector(".typing-text p");
 const input = document.querySelector(".container .input-field");
 const time = document.querySelector(".time span b");
-const mistakes = document.querySelector(".mistake span");
+const mistakes = document.querySelector(".mistakes span");
 const wpm = document.querySelector(".wpm span");
 const cpm = document.querySelector(".cpm span");
 const btn = document.querySelector(".start-button");
@@ -32,6 +32,9 @@ function loadParagraph() {
   }
   typingText.querySelectorAll("span")[0].classList.add("active");
   document.addEventListener("keydown", () => input.focus());
+  typingText.addEventListener("click", () => {
+    input.focus();
+  });
 }
 
 function initTyping() {
@@ -44,11 +47,12 @@ function initTyping() {
       mistake++;
       char[charIndex].classList.add("incorrect");
     }
-    charIndex;
+    charIndex++;
+    char[charIndex].classList.add("active");
+    mistakes.innerHTML = `<span>${mistake}</span>`;
   } else {
   }
 }
 
 input.addEventListener("input", initTyping);
-
 loadParagraph();
