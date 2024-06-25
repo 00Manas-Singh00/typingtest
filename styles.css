@@ -55,6 +55,14 @@ li span {
   font-weight: 900;
 }
 
+.input-field {
+  padding: 10px;
+  border: none;
+  position: absolute;
+  z-index: -99;
+  opacity: 0;
+}
+
 .typing-text {
   padding: 20px 0;
   border-bottom: 1px solid rgb(174, 174, 174);
@@ -68,6 +76,17 @@ li span {
 .typing-text p span::selection {
   color: black;
   background-color: #7c7c7c;
+}
+
+.active {
+  color: rgb(43, 43, 43);
+}
+
+.typing-text p span.correct {
+  color: black;
+}
+.typing-text p span.incorrect {
+  color: rgba(151, 33, 33, 0.827);
 }
 
 .timer-container {
