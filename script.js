@@ -27,9 +27,28 @@ function loadParagraph() {
   const randomPara = Math.floor(Math.random() * para.length);
   typingText.innerHTML = "";
   for (const char of para[randomPara]) {
-    console.log(char);
+    // console.log(char);
     typingText.innerHTML += `<span>${char}</span>`;
   }
+  typingText.querySelectorAll("span")[0].classList.add("active");
+  document.addEventListener("keydown", () => input.focus());
 }
+
+function initTyping() {
+  const char = typingText.querySelectorAll("span");
+  const typedChar = input.value.charAt(charIndex);
+  if (charIndex < char.length && timeLeft > 0) {
+    if (char[charIndex].innerText === typedChar) {
+      char[charIndex].classList.add("correct");
+    } else {
+      mistake++;
+      char[charIndex].classList.add("incorrect");
+    }
+    charIndex;
+  } else {
+  }
+}
+
+input.addEventListener("input", initTyping);
 
 loadParagraph();
