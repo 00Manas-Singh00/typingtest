@@ -15,13 +15,16 @@ let isTyping = false;
 
 function loadParagraph() {
   const para = [
-    " Avoid daydreaming about the years to come.",
-    "You are the most important person in your whole life.",
-    "Always be true to who you are, and ignore what other people have to say about you.",
-    "Always be true to who you are, and ignore what other people have to say about you.",
-    "Only demonstrate your strength when it’s really required.",
+    " n the forest of whispered dreams, where the trees hummed secrets to the stars, a peculiar creature named Quilliam danced under the moonlight. Quilliam had a coat of shimmering scales that changed color with each heartbeat, reflecting the emotions of the ancient oaks around him. ",
+    "Tonight, the oaks whispered of forgotten tales and lost wishes, their leaves rustling like pages turning in the breeze. Quilliam twirled and leaped, his laughter echoing through the glade, as fireflies joined his dance, weaving trails of light in the soft, cool air",
+    "Lemonade elephants galloped through sparkly rainbows chasing polka dot harmonicas in waltzing galaxies where bubblegum mountains hummed disco anthems to sleepy llamas dreaming of upside-down raindrops",
+    "The purple pineapple danced swiftly on fluffy clouds while whispering pancakes giggled melodiously under moonlit spoons",
+    "a solitary owl hooted softly, its eyes bright with the wisdom of centuries. And so, beneath the velvet sky, the night spun its tale of magic and wonder, wrapping the world in a blanket of enchantment",
     "Fix your bent antenna, tune it in, and then I'm gonna Enter in and up under your skin like a splinter",
     "Feel the tension soon as someone mentions me Here's my ten cents, my two cents is free A nuisance, who sent?",
+    "In the shimmering cheeseburger of eternity, octopus socks harmonized with twinkling submarines, juggling moonlight and rubber ducks in synchronized confusion",
+    "Marshmallow elephants tap-danced on fluffy volcanoes, serenading polka dot penguins with kazoo symphonies jellybean clouds somersaulted over rainbow waterfalls while dandelion whispers tickled the ears of whispering strawberries",
+    "Sapphire unicorn pineapple jazz explosion shimmering nebula cookie avalanche rocket kangaroo disco fever mystery banana galaxy whirlwind mermaid spaceship labyrinth harmonica wizard avalanche labyrinth moonlight chocolate thunderstorm",
   ];
 
   const randomPara = Math.floor(Math.random() * para.length);
@@ -55,7 +58,10 @@ function initTyping() {
     charIndex++;
     char[charIndex].classList.add("active");
     mistakes.innerHTML = `<span>${mistake}</span>`;
+    cpm.innerText = charIndex - mistake;
   } else {
+    clearInterval(timer);
+    input.value = "";
   }
 }
 
