@@ -83,7 +83,7 @@ li span {
 }
 
 .typing-text p span.correct {
-  color: black;
+  color: green;
 }
 .typing-text p span.incorrect {
   color: rgba(151, 33, 33, 0.827);
@@ -100,10 +100,30 @@ li span {
 .timer {
   position: absolute;
   height: 100%;
-  width: 50%;
+  /* width: 50%; */
   background-color: #575757;
   border-radius: 10px;
+  transition: width linear 60s;
 }
+
+@keyframes expand {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 25%;
+  }
+  50% {
+    width: 50%;
+  }
+  75% {
+    width: 75%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .start-btn {
   font-size: calc(0.7vw + 0.7rem);
   padding: 10px 20px;

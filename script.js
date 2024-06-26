@@ -4,7 +4,8 @@ const time = document.querySelector(".time span b");
 const mistakes = document.querySelector(".mistakes span");
 const wpm = document.querySelector(".wpm span");
 const cpm = document.querySelector(".cpm span");
-const btn = document.querySelector(".start-button");
+const btn = document.querySelector(".start-btn");
+const timeBar = document.querySelector(".timer");
 
 let timer;
 let maxTime = 60;
@@ -15,7 +16,7 @@ let isTyping = false;
 
 function loadParagraph() {
   const para = [
-    " n the forest of whispered dreams, where the trees hummed secrets to the stars, a peculiar creature named Quilliam danced under the moonlight. Quilliam had a coat of shimmering scales that changed color with each heartbeat, reflecting the emotions of the ancient oaks around him. ",
+    "the forest of whispered dreams, where the trees hummed secrets to the stars, a peculiar creature named Quilliam danced under the moonlight. Quilliam had a coat of shimmering scales that changed color with each heartbeat, reflecting the emotions of the ancient oaks around him. ",
     "Tonight, the oaks whispered of forgotten tales and lost wishes, their leaves rustling like pages turning in the breeze. Quilliam twirled and leaped, his laughter echoing through the glade, as fireflies joined his dance, weaving trails of light in the soft, cool air",
     "Lemonade elephants galloped through sparkly rainbows chasing polka dot harmonicas in waltzing galaxies where bubblegum mountains hummed disco anthems to sleepy llamas dreaming of upside-down raindrops",
     "The purple pineapple danced swiftly on fluffy clouds while whispering pancakes giggled melodiously under moonlit spoons",
@@ -41,6 +42,9 @@ function loadParagraph() {
 }
 
 function initTyping() {
+  timeBar.style.display = "block";
+
+  triggerAnimation();
   const char = typingText.querySelectorAll("span");
   const typedChar = input.value.charAt(charIndex);
   if (charIndex < char.length && timeLeft > 0) {
@@ -78,5 +82,26 @@ function initTime() {
   }
 }
 
+function reset() {
+  timeBar.style.display = "none";
+
+  loadParagraph();
+  clearInterval(timer);
+  timeLeft = maxTime;
+  charIndex = 0;
+  mistake = 0;
+  isTyping = false;
+  time.innerText = timeLeft;
+  mistakes.innerText = 0;
+  wpm.innerText = 0;
+  cpm.innerText = 0;
+  input.value = "";
+}
+
+function triggerAnimation() {
+  timeBar.style.animation = `expand 60s forwards`;
+}
+
 input.addEventListener("input", initTyping);
-loadParagraph();
+btn.addEventListener("click", reset);
+// loadParagraph();
