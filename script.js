@@ -41,6 +41,11 @@ function initTyping() {
   const char = typingText.querySelectorAll("span");
   const typedChar = input.value.charAt(charIndex);
   if (charIndex < char.length && timeLeft > 0) {
+    if (!isTyping) {
+      timer = setInterval(initTime, 1000);
+      isTyping = true;
+    }
+
     if (char[charIndex].innerText === typedChar) {
       char[charIndex].classList.add("correct");
     } else {
@@ -51,6 +56,19 @@ function initTyping() {
     char[charIndex].classList.add("active");
     mistakes.innerHTML = `<span>${mistake}</span>`;
   } else {
+  }
+}
+
+function initTime() {
+  if (timeLeft > 0) {
+    timeLeft--;
+    time.innerText = timeLeft;
+    let wpmVal = Math.round(
+      ((charIndex - mistake) / 5 / (maxTime - timeLeft)) * 60
+    );
+    wpm.innerText = wpmVal;
+  } else {
+    clearInterval(timer);
   }
 }
 
