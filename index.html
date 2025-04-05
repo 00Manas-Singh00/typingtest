@@ -4,50 +4,114 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="textGenerator.js" defer></script>
+    <script src="auth.js" defer></script>
     <script src="script.js" defer></script>
     <title>BlitzKeyboard</title>
   </head>
   <body>
-    <h1>BlitzKeyboard</h1>
-    <div class="main">
-      <div class="container">
-        <input type="text" class="input-field" />
-        <div class="content-box">
-          <div class="typing-text">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores
-              nisi, voluptatum, ut accusantium id delectus numquam, veniam
-              dignissimos molestias saepe hic excepturi incidunt eum quos optio
-              nemo ratione! Officia, quos.
-            </p>
+    <div class="auth-container" id="authContainer">
+      <div class="auth-box">
+        <h2>Login / Register</h2>
+        <div class="auth-form">
+          <input type="text" id="username" placeholder="Username" />
+          <input type="password" id="password" placeholder="Password" />
+          <div class="auth-buttons">
+            <button id="loginBtn">Login</button>
+            <button id="registerBtn">Register</button>
           </div>
-          <div class="content">
-            <div class="timer-container">
-              <div class="timer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content" id="mainContent" style="display: none;">
+      <div class="user-info">
+        <span id="usernameDisplay"></span>
+        <button class="stats-btn" id="statsBtn">Statistics</button>
+        <button id="logoutBtn">Logout</button>
+      </div>
+      
+      <h1>BlitzKeyboard</h1>
+      <div class="main">
+        <div class="container">
+          <div class="stats-modal hidden" id="statsModal">
+            <div class="stats-content">
+              <h2>Test Performance</h2>
+              <canvas id="performanceChart"></canvas>
+              <button class="close-btn">Close</button>
             </div>
-            <div class="result-details">
-              <li class="time">
-                <p>Time Left</p>
-                <span><b>60</b>s</span>
-              </li>
-              <li class="mistakes">
-                <p>Mistakes</p>
-                <span>0</span>
-              </li>
-              <li class="wpm">
-                <p>WPM</p>
-                <span>0</span>
-              </li>
-              <li class="cpm">
-                <p>CPM</p>
-                <span>0</span>
-              </li>
-              <li>
-                <button class="start-btn">Start</button>
-              </li>
+          </div>
+          <div class="test-settings" id="testSettings">
+            <div class="mode-selector">
+              <h3>Select Mode</h3>
+              <div class="mode-options">
+                <button class="mode-btn active" data-mode="normal">Normal</button>
+                <button class="mode-btn" data-mode="hard">Hard</button>
+                <button class="mode-btn" data-mode="numbers">Numbers</button>
+                <button class="mode-btn" data-mode="symbols">Symbols</button>
+                <button class="mode-btn" data-mode="code">Code</button>
+              </div>
+            </div>
+            <div class="time-selector">
+              <h3>Time Duration</h3>
+              <div class="time-options">
+                <button class="time-btn" data-time="30">30s</button>
+                <button class="time-btn active" data-time="60">60s</button>
+                <button class="time-btn" data-time="120">120s</button>
+                <button class="time-btn" data-time="180">180s</button>
+              </div>
+            </div>
+            <button class="confirm-btn">Confirm Settings</button>
+          </div>
+          <button class="settings-toggle-btn" id="settingsToggle">Settings</button>
+          <div class="test-section hidden" id="testSection">
+            <input type="text" class="input-field" />
+            <div class="content-box">
+              <div class="typing-text">
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores
+                  nisi, voluptatum, ut accusantium id delectus numquam, veniam
+                  dignissimos molestias saepe hic excepturi incidunt eum quos optio
+                  nemo ratione! Officia, quos.
+                </p>
+              </div>
+              <div class="content">
+                <div class="timer-container">
+                  <div class="timer"></div>
+                </div>
+                <div class="result-details">
+                  <li class="time">
+                    <p>Time Left</p>
+                    <span><b>60</b>s</span>
+                  </li>
+                  <li class="mistakes">
+                    <p>Mistakes</p>
+                    <span>0</span>
+                  </li>
+                  <li class="wpm">
+                    <p>WPM</p>
+                    <span>0</span>
+                  </li>
+                  <li class="cpm">
+                    <p>CPM</p>
+                    <span>0</span>
+                  </li>
+                  <li class="action-buttons">
+                    <button class="start-btn">Start</button>
+                    <button class="retry-btn hidden">Retry</button>
+                    <button class="next-btn hidden">Next</button>
+                  </li>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="test-history">
+        <h2>Test History</h2>
+        <div id="testHistory"></div>
       </div>
     </div>
   </body>
