@@ -124,7 +124,12 @@ li span {
   }
 }
 
-.start-btn {
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.start-btn, .retry-btn, .next-btn {
   font-size: calc(0.7vw + 0.7rem);
   padding: 10px 20px;
   border: none;
@@ -132,8 +137,323 @@ li span {
   background-color: #424242;
   color: #d1d1d1;
   transition: all linear 0.6s;
+  cursor: pointer;
 }
 
-.start-btn:hover {
+.start-btn:hover, .retry-btn:hover, .next-btn:hover {
   box-shadow: 0px 2px 5px rgba(80, 80, 80, 0.728), -2px 5px rgba(0, 0, 0, 0.22);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Authentication Styles */
+.auth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.auth-box {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.auth-buttons button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #424242;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons button:hover {
+  background-color: #575757;
+}
+
+/* User Info Styles */
+.user-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#usernameDisplay {
+  font-weight: 600;
+  color: #424242;
+}
+
+#logoutBtn, .stats-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #424242;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+#logoutBtn:hover, .stats-btn:hover {
+  background-color: #575757;
+}
+
+/* Test Settings Styles */
+.test-settings {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.test-settings.hidden {
+  display: none;
+}
+
+.confirm-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #424242;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-btn:hover {
+  background-color: #575757;
+}
+
+.settings-toggle-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background-color: #424242;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.settings-toggle-btn:hover {
+  background-color: #575757;
+}
+
+.settings-toggle-btn.hidden {
+  display: none;
+}
+
+.mode-selector, .time-selector {
+  margin-bottom: 15px;
+}
+
+.mode-selector h3, .time-selector h3 {
+  font-size: 1.1rem;
+  color: #424242;
+  margin-bottom: 10px;
+}
+
+.mode-options, .time-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mode-btn, .time-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  color: #424242;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mode-btn:hover, .time-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.mode-btn.active, .time-btn.active {
+  background-color: #424242;
+  color: #fff;
+}
+
+/* Test History Styles */
+.test-history {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.test-history h2 {
+  font-size: 1.5rem;
+  color: #424242;
+  margin-bottom: 1rem;
+}
+
+#testHistory {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-item {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.history-item .date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.history-item .wpm {
+  font-weight: 600;
+  color: #424242;
+}
+
+.history-item .accuracy {
+  color: #4CAF50;
+}
+
+/* Statistics Button and Modal Styles */
+.stats-btn {
+  /* position: fixed; */
+  /* top: 20px; */
+  /* right: 20px; */
+  padding: 10px 20px;
+  background-color: #424242;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  z-index: 1000;
+}
+
+.stats-btn:hover {
+  background-color: #575757;
+}
+
+.stats-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.stats-modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.stats-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.3s;
+}
+
+.stats-modal.visible .stats-content {
+  transform: translateY(0);
+}
+
+.stats-content h2 {
+  margin-bottom: 1.5rem;
+  color: #424242;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #424242;
+}
+
+#performanceChart {
+  width: 100% !important;
+  height: 400px !important;
 }
